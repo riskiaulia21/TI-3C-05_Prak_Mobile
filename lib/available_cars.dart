@@ -1,4 +1,4 @@
-import 'package:kelompok_05/car_widget.dart';
+import 'package:TI-3C-05_Prak_Mobile/car_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:kelompok_05/constants.dart';
 import 'package:kelompok_05/data.dart';
@@ -10,7 +10,6 @@ class AvailableCars extends StatefulWidget {
 }
 
 class _AvailableCarsState extends State<AvailableCars> {
-
   List<Filter> filters = getFilterList();
   late Filter selectedFilter;
 
@@ -33,36 +32,32 @@ class _AvailableCarsState extends State<AvailableCars> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
                 },
                 child: Container(
-                  width: 45,
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15),
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15),
+                      ),
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1,
+                      ),
                     ),
-                    border: Border.all(
-                      color: Colors.grey,
-                      width: 1,
-                    ),
-                  ),
-                  child: Icon(
-                    Icons.keyboard_arrow_left,
-                    color: Colors.black,
-                    size: 28,
-                  )
-                ),
+                    child: Icon(
+                      Icons.keyboard_arrow_left,
+                      color: Colors.black,
+                      size: 28,
+                    )),
               ),
-
               SizedBox(
                 height: 14,
               ),
-
               Text(
                 "Mobil yang Tersedia (" + getCarList().length.toString() + ")",
                 style: TextStyle(
@@ -71,11 +66,9 @@ class _AvailableCarsState extends State<AvailableCars> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-
               SizedBox(
                 height: 14,
               ),
-
               Expanded(
                 child: GridView.count(
                   physics: BouncingScrollPhysics(),
@@ -85,18 +78,17 @@ class _AvailableCarsState extends State<AvailableCars> {
                   mainAxisSpacing: 15,
                   children: getCarList().map((item) {
                     return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => BookCar(car: item)),
-                        );
-                      },
-                      child: buildCar(item, 0)
-                    );
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BookCar(car: item)),
+                          );
+                        },
+                        child: buildCar(item, 0));
                   }).toList(),
                 ),
               ),
-
             ],
           ),
         ),
@@ -118,7 +110,7 @@ class _AvailableCarsState extends State<AvailableCars> {
     );
   }
 
-  Widget buildFilterIcon(){
+  Widget buildFilterIcon() {
     return Container(
       width: 60,
       height: 50,
@@ -139,7 +131,7 @@ class _AvailableCarsState extends State<AvailableCars> {
     );
   }
 
-  List<Widget> buildFilters(){
+  List<Widget> buildFilters() {
     List<Widget> list = [];
     for (var i = 0; i < filters.length; i++) {
       list.add(buildFilter(filters[i]));
@@ -147,7 +139,7 @@ class _AvailableCarsState extends State<AvailableCars> {
     return list;
   }
 
-  Widget buildFilter(Filter filter){
+  Widget buildFilter(Filter filter) {
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -161,7 +153,8 @@ class _AvailableCarsState extends State<AvailableCars> {
           style: TextStyle(
             color: selectedFilter == filter ? kPrimaryColor : Colors.grey[300],
             fontSize: 12,
-            fontWeight: selectedFilter == filter ? FontWeight.bold : FontWeight.normal,
+            fontWeight:
+                selectedFilter == filter ? FontWeight.bold : FontWeight.normal,
           ),
         ),
       ),
